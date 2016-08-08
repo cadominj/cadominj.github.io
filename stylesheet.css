@@ -1,0 +1,43 @@
+@import url(https://fonts.googleapis.com/css?family=Righteous);
+
+body
+{
+  font-family: 'Righteous', sans-serif;
+}
+
+a
+{
+  text-decoration: none;
+}
+
+#content
+{
+  padding: 10px 10px 10px 20px;
+}
+
+#nav_bar
+{
+  background-color: black;
+  color: red;
+  /*padding-left: 10px;*/
+  padding: 10px 10px 10px 10px;
+}
+
+#nav_bar h1{color: white;}
+
+/*LINKS*/
+
+#nav_bar a:link, #nav_bar a:visited{color: white;}
+#nav_bar a:hover{color: red;}
+#nav_bar a:active{color: black;}
+
+#nav_bar h1 a:hover{color: white;}
+
+a.invert:link, a.invert:visited{color: red;}
+a.invert:hover{color: black;}
+
+/*DEFAULT LINK STYLES*/
+
+a:link, a:visited{color: black;}
+a:hover{color: red;}
+a:active{color: white;}

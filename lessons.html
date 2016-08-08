@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AMA: Lessons</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+  
+<style>
+  .red{color: red;}
+  #circuit
+  {
+    background-color: black;
+    padding-left: 50px;
+    border-radius: 90px;
+  }
+  
+  #circuit li a
+  {
+    display: inline-block;
+    text-align: center;
+  }
+  
+  #circuit a
+  {
+    font-size: 200%;
+    padding: 4px 8px;
+  }
+  
+  #circuit a:link, #circuit a:visited{color: white}
+  #circuit a:hover
+  {
+    color: red;
+    font-size: 250%;
+  }
+  #circuit a:active{color: black;}
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+  //use google's jQuery
+</script>
+  
+<script type="text/javascript">
+  var num = 0;       //stores the id of the current description
+  
+  $(document).ready(function()
+  {
+    $("p").hide(); //hide the description
+  });
+  
+  function switchDescription(num)
+  {
+    $("p").show();
+    
+    switch (num)
+      {
+        case 1:
+          $("#header").text("Circuit 1");
+          $("#body").html("\
+            <p><span class='red'>Output</span>: Sends current out to attached devices.</p>\
+            <p><span class='red'>Input</span>: Data is entered into the Arduino through input devices (keyboard, sensors, etc).</p>\
+            <h4>Digital Input/Output</h4>\
+            <ul>\
+              <li>Can only be either on all the way or off all the way (HIGH or LOW); no range in values.</li>\
+              <li>Examples of Digital Output: LED lights, motors</li><li>Examples of Digital Input: switches, buttons</li>\
+            </ul>\
+            <p><span class='red'>Digital</span>: translation of information is into binary format (0 or 1) where each bit is representative of 2 distinct amplitudes.</p>\
+            <p><span class='red'>Analog</span>: information is translated into electric pulses of varying amplitude.</p>\
+            <h4>Functions</h4>\
+            <a href='https://www.arduino.cc/en/Reference/PinMode' target='blank_'>pinMode()</a><br />\
+            <a href='https://www.arduino.cc/en/Reference/DigitalWrite' target='blank_'>digitalWrite()</a><br />\
+            <a href='https://www.arduino.cc/en/Reference/DigitalRead' target='blank_'>digitalRead()</a>\
+            ");
+          break;
+        case 2:
+          $("#header").text("Circuit 2");
+          $("#body").html("\
+            <p><span class='red'>Potentiometer</span> (dial): Inputs a value between the range of 0 – 1023 based on the position of the dial. (range of 0 – 5 Volts)</p>\
+            <p>Examples of Uses: Heat dials on ovens and stoves, volume and tone knobs on electric instruments and amplifiers</p>\
+            <h4>Variables</h4>\
+            <p><a class='invert' href='http://www.cplusplus.com/doc/tutorial/variables/'target='blank_'>Variable</a>: a container that holds a number and has an address.</p>\
+            <ul>\
+              <li><a href='http://www.tutorialspoint.com/cplusplus/cpp_data_types.htm' target='blank_'>Data Types</a>\
+              <ul>\
+                int, float, double, char, bool, byte\
+              </ul></li>\
+              <li><a href='http://www.tutorialspoint.com/cplusplus/cpp_modifier_types.htm' target='blank_'>Modifiers</a>\
+              <ul>\
+                signed, unsigned, short, long\
+              </ul></li>\
+              <li><a href='https://www.macs.hw.ac.uk/~pjbk/pathways/cpp1/node45.html' target='blank_'>Declaring Variables</a> (creating variables)<br />\
+              <ul>\
+                int x;\
+              </ul></li>\
+              <li><a href='http://www.learncpp.com/cpp-tutorial/2-1-fundamental-variable-definition-initialization-and-assignment/' target='blank_'>Initializing Variables</a> (setting value while declaring)<br />\
+              <ul>\
+                int x = 10;\
+              </ul></li>\
+              <li><a href='https://www.macs.hw.ac.uk/~pjbk/pathways/cpp1/node44.html' target='blank_'>Keywords</a> (cannot be used for variable names)</li>\
+            </ul>\
+            <h4>Functions</h4>\
+            <a href='https://www.arduino.cc/en/Reference/AnalogRead' target='blank_'>analogRead()</a><br />\
+            ");
+          break;
+        case 3:
+          $("#header").text("Circuit 3");
+          $("#body").html("\
+            <p><span class='red'>RGB Light</span>: Send power to any of the colors to activate them (set pin value to HIGH), Common connects to ground</p>\
+            <ul><a href='http://www.colortools.net/color_mixer.html' target='blank_'>RGB Color Mixing</a></ul>\
+            <p>Examples of Uses: Computer screens, sign/exhibit backlighting, household light strip décor</p>\
+            <h4><a href='https://www.macs.hw.ac.uk/~pjbk/pathways/cpp1/node46.html' target='blank_'>Constants</a></h4>\
+            <p>Use the keyword const before initializing a variable to create a <a class='invert' href='https://www.macs.hw.ac.uk/~pjbk/pathways/cpp1/node46.html' target='blank_'>constant</a>. The value of the variable must be set when it is declared and cannot be changed later.</p>\
+            <h4><a href='http://www.tutorialspoint.com/cplusplus/cpp_functions.htm' target='blank_'>Functions</a></h4>\
+            <p>Syntax:</p>\
+            <ul><p>returnType functionName ( parameter1, parameter2, ...) { statements }</p></ul>\
+            <p>Example:</p>\
+            <ul>\
+              <p>int square(int a) {return a * a;}</p>\
+            </ul>\
+            <h4><a href='file:///C:/Program%20Files%20(x86)/Arduino/reference/www.arduino.cc/en/Reference/For.html' target='blank_'>For Loops</a></h4>\
+            <p>Syntax:</p>\
+            <ul>\
+              <p>for (initialize; condition; increment)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;statements;<br />}<br />//loops until the condition is met</p>\
+            </ul>\
+            <p>Example:</p>\
+            <ul>\
+              <p>//will attach all of the servos in the lists if both lists correspond<br />for (int i = sizeof(servoList) / sizeof(servoList[0]); i > -1; --i)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;servoArray[i].attach(servoPinArray[i]);<br />}</p>\
+            </ul>\
+            ");
+          break;
+        case 4:
+          $("#header").text("Circuit 4");
+          $("#body").html("\
+            <h4><a href='http://www.cplusplus.com/doc/tutorial/arrays/' target='blank_'>Arrays</a></h4>\
+            <p>Essentially a list of values. The values are identified by their indexes. Index begins at zero and count up by 1. Each item in the array is referred to as an element of the array. The programmer must set the length of the array when it is created (either by declaring it with a given length or by initializing it with all of its elements, or a combination thereof). The length of the array must be known at compile-time, and cannot be changed at run-time, (you can, however, at runtime, build a larger array, copy over all of the old elements, and then delete the old array, which accomplishes a similar task – requires dynamic memory allocation, may cause memory leaks).</p>\
+            <p>Syntax:</p>\
+            <ul>\
+              <p>arrayType arrayName[numberOfElements];</p>\
+              <p>arrayType arrayName[numberOfElements] = {elem1, elem2, ...};</p>\
+              <p>arrayType arrayName[] = {elem1, elem2, ... , elemLastElem};</p>\
+            </ul>\
+            <p>Examples:</p>\
+            <p>&nbsp;&nbsp;Each will create an array of 4 integers called list</p>\
+            <ul>\
+              <li><p>int list[4] = {1, 2, 3, 4};<br />list[0] = 3; //changes the value of 1 to 3<br />//list is now {3, 2, 3, 4}</p></li>\
+              <li><p>int list[] = {1, 2, 3, 4};</li></p>\
+              <li><p>int list[4]; //reserves 4 spaces the size of integers in memory</p></li>\
+              <li><p>int list[4] = {1, 2};<br />\
+              /*list[2] and list[3] (3rd and 4th elements) are currently random values, reserving space in memory*/</li></p>\
+            </ul>\
+            ");
+          break;
+        case 5:
+          $("#header").text("Circuit 5");
+          $("#body").html("\
+            <h4><a href='http://en.cppreference.com/w/cpp/language/operator_logical' target='blank_'>Logic Operators</a></h4>\
+            <p><a href='http://en.cppreference.com/w/cpp/language/operator_comparison' target='blank_'>Comparison Operators</a> are used in conjunction with conditional statements to compare 2 values. Logic operators used with comparison operators make compound conditional statements.</p>\
+            <p>Conditional statements evaluate to true or false (false is 0 and true is anything but 0, usually 1)</p>\
+            <p>Examples:</p>\
+            <p><a class='invert' style='font-size: 200%;' href='file:///C:/Program%20Files%20(x86)/Arduino/reference/www.arduino.cc/en/Reference/If.html' target='blank_'>==</a> (EQUAL)</p>\
+            <ul>int length = 20;<br />\
+            <br />\
+            //if length is 20, do statements()<br />\
+            if (length == 20) {statements();}</ul>\
+            <p> <a class='invert' style='font-size: 200%;' href='file:///C:/Program%20Files%20(x86)/Arduino/reference/www.arduino.cc/en/Reference/If.html' target='blank_'>!=</a> (NOT EQUAL)</p>\
+            <ul>\
+            int width = 10;<br />\
+            <br />\
+            //if width is not 0, do statements()<br />\
+            if (width != 0) {statements();}\
+            </ul>\
+            <p><a class='invert' style='font-size: 200%;' href='file:///C:/Program%20Files%20(x86)/Arduino/reference/www.arduino.cc/en/Reference/Boolean.html' target='blank_'>&&</a> (AND)</p>\
+            <ul>\
+            int length = 20;<br />\
+            <br />\
+            //if legth is >10 and < 50, do statements()<br />\
+            if (length > 10 && length < 50){statements();}<br />\
+            <br />\
+            /*Because length is greater than 10 and less than 50, the conditional statement will evaluate to true and statements() will execute.*/\
+            </ul>\
+            <p><a class='invert' style='font-size: 200%;' href='file:///C:/Program%20Files%20(x86)/Arduino/reference/www.arduino.cc/en/Reference/Boolean.html' target='blank_'>||</a> (OR)</p>\
+            <ul>\
+            int width = 10;<br />\
+            <br />\
+            //if width is < 20 or width is > 50, do statements()<br />\
+            if (width < 20 || width > 50){statements();}<br />\
+            <br />\
+            /*Because width is less than 20, the conditional statement will evaluate to true and statements() will execute. Because the computer checks width < 20 first and that evaluates to true, it won’t even check if width > 50; it will automatically run statements();*/\
+            </ul>\
+            <p><a class='invert' style='font-size: 200%;' href='' target='blank_'></a> (variable name)</p>\
+            <ul>\
+            int length = 20;<br />\
+            <br />\
+            //if length, do statements<br />\
+            if (length){statements();}<br />\
+            <br />\
+            //Since length is not 0, statements() will execute\
+            </ul>\
+            <p><a class='invert' style='font-size: 200%;' href='file:///C:/Program%20Files%20(x86)/Arduino/reference/www.arduino.cc/en/Reference/Boolean.html' target='blank_'>!</a> (NOT)</p>\
+            <ul>\
+            int width = 10;<br />\
+            <br />\
+            //if not width, do statements<br />\
+            if (!width){statements();}<br />\
+            <br />\
+            //Since width is not 0, statements() will not execute<br />\
+            </ul>\
+            ");
+          break;
+        case 6:
+          $("#header").text("Circuit 6");
+          $("#body").html("\
+            <p><span class='red'>Servo Motor</span>: A motor that includes feedback circuitry allowing it to move specific positions.</p>\
+            <p>Examples of Uses: Radio-controlled airplanes, elevators, rudders, robotics, solar tracking systems</p>\
+            <h4><a href='http://www.cplusplus.com/doc/tutorial/preprocessor/' target='blank_'>Preprocessor Directives</a></h4>\
+            <p><a href='http://www.cplusplus.com/doc/tutorial/preprocessor/' target='blank_'>Preprocessor directives</a> don’t need a semicolon. They are instructions for the compiler (they are executed at compile-time rather than run-time). They are marked with a #.</p>\
+            <p>Common Directives</p>\
+            <ul>\
+            <a href='file:///C:/Program%20Files%20(x86)/Arduino/reference/www.arduino.cc/en/Reference/Include.html' target='blank_'>#include</a><br />\
+            <a href='file:///C:/Program%20Files%20(x86)/Arduino/reference/www.arduino.cc/en/Reference/Define.html' target='blank_'>#define</a>\
+            </ul>\
+            <h4><a href='https://www.arduino.cc/en/Tutorial/PWM' target='blank_'>Pulse Width Modulator</a> (PWM)</h4>\
+            <p>Pulse Width Modulation is a technique for using a digital output as though it were analog. By using HIGH and LOW in a series broken up with delays, one can fake something between HIGH and LOW.</p>\
+            <h4>Slowing Down a Servo</h4>\
+            <p>Use delays and smaller increments in position change to slow servo down.</p>\
+            ");
+          break;
+        case 7:
+          $("#header").text("Circuit 7");
+          $("#body").html("\
+            <h4><a href='https://www.arduino.cc/en/Reference/Serial' target='blank_'>Serial Window</a></h4>\
+            <p>Baud rate (usually 9600) is the speed of communication between the Arduino and the computer.</p>\
+            <h4><a href='https://www.arduino.cc/en/Reference/Tone' target='blank_'>Tone</a></h4>\
+            <h4>Functions</h4>\
+            <p><a href='https://www.arduino.cc/en/Reference/Tone' target='blank_'>tone();</a><br />\
+            <a href='https://www.arduino.cc/en/Reference/NoTone' target='blank_'>noTone();</a><br />\
+            <br />\
+            <a href='https://www.arduino.cc/en/Reference/Serial' target='blank_'>Serial Window Library</a></p>\
+            ");
+          break;
+        case 8:
+          $("#header").text("Circuit 8");
+          $("#body").html("\
+            <h4><a href='https://www.arduino.cc/en/Reference/LiquidCrystal' target='blank_'>Liquid Crystal Display</a></h4>\
+            <p>The <a class='invert' href='https://www.arduino.cc/en/Reference/LiquidCrystal' target='blank'>LCD</a> is a screen with a particular size used to display text. LCD monitors use a backlight and small filters controlled by electrical current to produce images.</p>\
+            ");
+          break;
+        case 9:
+          $("#header").text("Circuit 9");
+          $("#body").html("\
+            <h4><a href='' target='blank_'>Pseudo-Random Number Generator</a></h4>\
+            <p></p>\
+            <h4><a href='file:///C:/Program%20Files%20(x86)/Arduino/reference/www.arduino.cc/en/Reference/SwitchCase.html' target='blank_'>Switch Statements</a></h4>\
+            <p></p>\
+            <p>Syntax:</p>\
+            <ul>\
+              <p>switch (variable)<br />\
+              {<br />\
+              &nbsp;&nbsp;&nbsp;&nbsp;case value1:<br />\
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;statements1();<br />\
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />\
+              &nbsp;&nbsp;&nbsp;&nbsp;case value2:<br />\
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;statements2();<br />\
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />\
+              &nbsp;&nbsp;&nbsp;&nbsp;default:<br />\
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />\
+              }</p>\
+            </ul>\
+            <p>Example:</p>\
+            <ul>\
+              <p>int cows = 10;<br />\
+              <br />\
+              switch (cows)<br />\
+              {<br />\
+              &nbsp;&nbsp;&nbsp;&nbsp;case 0:<br />\
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cows += 2; //cows should go from 0 to 2<br />\
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break; //breaks out of switch statement<br />\
+              &nbsp;&nbsp;&nbsp;&nbsp;case 2:<br />\
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cows *= 5; //cows should go from 2 to 10<br />\
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />\
+              &nbsp;&nbsp;&nbsp;&nbsp;default: //cows goes up by 1<br />\
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++cows;<br />\
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />\
+              }<br />\
+              //Since cows is not 0 or 2, default will run.<br />\
+              //cows will become 11</p>\
+            </ul>\
+            <h4>Functions</h4>\
+            <p><a href='https://www.arduino.cc/en/Reference/Random' target='blank_'>random();</a></p>\
+            ");
+          break;
+        case 10:
+          $("#header").text("Circuit 10");
+          $("#body").html("\
+            <h4><a href='file:///C:/Program%20Files%20(x86)/Arduino/reference/www.arduino.cc/en/Reference/While.html' target='blank_'>While Loop</a></h4>\
+            <p>Enters loop if the condition is true. Breaks out of the loop if the condition is ever false (or break command is used). If condition is never false, the loop will repeat for eternity.</p>\
+            <p>Syntax:</p>\
+            <p><ul>while(condition){statements}</ul></p>\
+            <p>Example:</p>\
+            <p><ul>\
+            int i = 5;<br /><br />\
+            while (i > 0)<br />\
+            {<br />\
+            &nbsp;&nbsp;&nbsp;&nbsp;Serial.println(i); //prints value of i<br />\
+            &nbsp;&nbsp;&nbsp;&nbsp;--i; //decrease value of i by 1 <br />\
+            } //repeat if i is greater than 0\
+            </ul></p>\
+            <h4>Functions</h4>\
+            <p>\
+            <a href='https://www.arduino.cc/en/Reference/Map' target='blank_'>map();</a><br />\
+            <a href='https://www.arduino.cc/en/Reference/Constrain' target='blank_'>constrain();</a>\
+            </p>\
+            ");
+          break;
+          
+        case 11:
+          $("#header").text("Circuit 11");
+          $("#body").html("\
+            <p><span class='red'>Capacitive Sensor</span>: takes in analog data through the method capacitiveSensor() rather than analogRead(). Taking fewer samples can result in a large range of variance and inaccuracy; taking too many can produce lag.</p>\
+            ");
+          break;
+        case 12:
+          $("#header").text("Circuit 12");
+          $("#body").html("\
+            <p><span class='red'>Flex sensor</span>: a plastic strip with conductive coating. When straight, the coating will have a particular resistance. When bent, the resistance will increase.</p>\
+            ");
+          break;
+        default:
+          $("p").hide();
+          break;
+      }
+      
+  }
+  
+ 
+</script>
+  
+</head>
+<head>
+<body>
+  
+<div id="nav_bar">
+<h1><a href="index.html">Art, Music, and Arduinos</a></h1>
+<a href="index.html">Home</a> |
+<a href="lessons.html">Lessons</a> |
+<a href="functions.html">Functions</a> |
+<a href="refs.html">Reference Sheets</a> |
+<a href="examples.html">Project Examples</a> 
+</div>
+  
+<div id="content">
+
+<h2>Lessons</h2>
+  
+  <div id="circuit">
+  <table style="width: 80%">
+    <tr>
+      <span style="font-size: 150%; color: red;">Circuit</span>
+    </tr>
+    <tr>
+      <td><span style="font-size: 250%;">|</span></td>
+      <!--PROJECT 2-->
+      <td class="item"><a href="https://circuits.io/circuits/633442-arduino-projects-book-project-2-spaceship-interface" target="_blank">1</a></td>
+      <!--CIRCUIT 2-->
+      <td class="item"><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32/experiment-2-reading-a-potentiometer" target="_blank">2</a></td>
+      <!--CIRCUIT 3-->
+      <td class="item"><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32/experiment-3-driving-an-rgb-led" target="_blank">3</a></td>
+      <!--CIRCUIT 4-->
+      <td class="item"><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32/experiment-4-driving-multiple-leds" target="_blank">4</a></td>
+      <!--CIRCUIT 5-->
+      <td class="item"><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32/experiment-5-push-buttons" target="_blank">5</a></td>
+      <!--CIRCUIT 8-->
+      <td class="item"><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32/experiment-8-driving-a-servo-motor" target="_blank">6</a></td>
+      <!--PROJECT 7-->
+      <td class="item"><a href="https://codebender.cc/example/10.StarterKit/p07_Keyboard#p07_Keyboard.ino" target="_blank">7</a></td>
+      <!--CIRCUIT 15-->
+      <td class="item"><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32/experiment-15-using-an-lcd" target="_blank">8</a></td>
+      <!--PROJECT 11-->
+      <td class="item"><a href="https://codebender.cc/example/10.StarterKit/p11_CrystalBall#p11_CrystalBall.ino" target="_blank">9</a></td>
+      <!--PROJECT 6-->
+      <td class="item"><a href="https://codebender.cc/example/10.StarterKit/p06_LightTheremin#p06_LightTheremin.ino" target="_blank">10</a></td>
+      <!--PROJECT 13-->
+      <td class="item"><a href="http://astenor.free.fr/Arduino/Projet_13/Project_13-EN.pdf" target="_blank">11</a></td>
+      <!--CIRCUIT 9-->
+      <td class="item"><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32/experiment-9-using-a-flex-sensor" target="_blank">12</a></td>
+    </tr>
+  </table>
+  </div>
+  <p id="header" style="font-size: 150%;">[header]</p>
+  <p id="body">[body]</p>
+    
+  <script>
+    $("td.item").hover(function()
+    {
+      num = parseInt($(this).text());
+      switchDescription(num);
+    });
+  </script>
+  
+</div><!--CONTENT-->
+</body>
+</html>
